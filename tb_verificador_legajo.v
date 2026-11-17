@@ -59,11 +59,11 @@ module tb_verificador_legajo;
             valid = 1'b1;
             for (i = 0; i < 6; i = i + 1) begin
                 dato = digitos[i];
-                @(posedge clk); // Espera el flanco ascendente donde el hardware lee el dato
+                @(posedge clk); 
             end
             
             valid = 1'b0;
-            dato = 4'b0000; // Limpiamos el dato después de enviar los 6 dígitos
+            dato = 4'b0000;
             
             @(posedge done);
             #1;
