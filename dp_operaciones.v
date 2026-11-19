@@ -5,7 +5,7 @@ module dp_operaciones
     input  wire         arst,
     input  wire [3:0]   dato_in,        //Dígitos q recibo del legajo
     output reg  [3:0]   verificador,    //Dígito verificador calculado 
-    input  wire         ld_digit,       //señal para cargar el dígito en el dp
+    input  wire         ld_digit,       //señal para cargar el dígito y contar en el dp
     input  wire         ld_acum,        //señal para operar con el acum en el dp
     input  wire         ld_clr,         //señal para borrar el acum en el dp        
     output wire         seis_digitos,   //flag que indica que se recibieron 6 dígitos dsd el dp
@@ -52,7 +52,7 @@ module dp_operaciones
         always @(posedge clk or posedge arst) begin
             if (arst | ld_clr)
                 acumulador <= 8'b00000000;
-            else if (ld_acum)                                                                   //Según este flag cargo la suma o resto
+            else if (ld_acum)                          //Según este flag cargo la suma o resto
                 acumulador <= acum_next;
         end
     
@@ -63,7 +63,7 @@ module dp_operaciones
     always @(posedge clk or posedge arst) begin
         if (arst)
             verificador <= 4'b0000;
-        else if (acum_menor_11 && seis_digitos) begin                                           //Para no interferir con el cálculo de la suma
+        else if (acum_menor_11 && seis_digitos) begin  //Para no interferir con el cálculo de la suma
             if (acumulador[3:0] == 4'b1010)
                 verificador <= 4'b0000;
             else
@@ -72,3 +72,4 @@ module dp_operaciones
     end
 /*------------------------------------------------------------------------------------------------*/
 endmodule
+

@@ -21,11 +21,11 @@ module verificador_legajo (
         .arst(arst),
         .start(start),
         .valid(valid),
-        .seis_digitos(seis_digitos),   //flag que indica que se recibieron 6 dígitos dsd el dp
+        .seis_digitos(seis_digitos),    //flag que indica que se recibieron 6 dígitos dsd el dp
         .acum_menor_11(acum_menor_11),  //flag que indica que el acumulador es menor a 11 dsd el dp
-        .ld_acum(ld_acum),        //señal para operar con el acum en el dp
-        .ld_digit(ld_digit),       //señal para cargar el dígito en el dp
-        .ld_clr(ld_clr),         //señal para borrar el acum en el dp
+        .ld_acum(ld_acum),              //señal para operar con el acum en el dp
+        .ld_digit(ld_digit),            //señal para cargar el dígito en el dp
+        .ld_clr(ld_clr),                //señal para borrar el acum en el dp
         .busy(busy),
         .done(done)
     );
@@ -42,5 +42,4 @@ module verificador_legajo (
         .acum_menor_11(acum_menor_11),
         .verificador(verificador)
     );
-
 endmodule

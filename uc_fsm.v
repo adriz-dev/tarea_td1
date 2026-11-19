@@ -38,11 +38,12 @@ module uc_fsm
         ld_acum = 1'b0;     
         ld_digit = 1'b0;   
         ld_clr = 1'b0;
+        //estado_actual <= S_IDLE
         case (estado_actual)
             S_IDLE: begin
                 if(start) begin
                     estado_futuro = S_READ;
-                    ld_clr = 1'b1;      //orden para inicializar el acum en cero
+                    ld_clr = 1'b1;      //orden para inicializar el acum y mi contador de dígitos en cero
                 end else begin
                     estado_futuro = S_IDLE;
                     busy    = 1'b0;
@@ -53,10 +54,15 @@ module uc_fsm
                 if(valid) begin    
                     ld_digit = 1'b1;
                     ld_acum = 1'b1;             //acumulo sumas
-                end   
+                end  else  begin                //evito latches
+                    ld_digit = 1'b0;
+                    ld_acum = 1'b0;             
+                end 
                 if (seis_digitos) begin
                     estado_futuro = S_WORK;
-                end               
+                end else begin                  
+                    estado_futuro = S_READ;
+                end             
             end
             S_WORK: begin  
                 busy = 1'b1;  
