@@ -42,7 +42,7 @@ module dp_operaciones
 
 /*------------------------------------------------------------------------------------------------*/
     reg [7:0] acumulador;                   //Suma ponderada de los dígitos
-    wire [7:0] producto;
+    wire [5:0] producto;
     wire [7:0] acum_next;                   //Suma ponderada parcial de los dígitos
 
     assign producto = dato_in * peso_actual;
